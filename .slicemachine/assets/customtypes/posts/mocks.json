@@ -1,0 +1,63 @@
+{
+  "id": "mock-doc-id",
+  "url": null,
+  "type": "posts",
+  "href": null,
+  "tags": [],
+  "first_publication_date": "1970-01-01T00:00:01+0000",
+  "last_publication_date": "1970-01-01T00:00:01+0000",
+  "slugs": [],
+  "linked_documents": [],
+  "lang": "en-us",
+  "alternate_languages": [],
+  "data": {
+    "title": [
+      {
+        "type": "paragraph",
+        "text": "Mollit eu irure cillum ad irure proident cupidatat non. Aliquip reprehenderit in irure laboris incididunt occaecat reprehenderit ipsum velit sit voluptate. Laboris proident voluptate adipisicing exercitation consequat aliqua consequat ipsum.",
+        "spans": []
+      }
+    ],
+    "subtitle": [
+      {
+        "type": "paragraph",
+        "text": "Adipisicing esse esse nisi ex reprehenderit labore minim sunt laborum. Qui sint excepteur ad occaecat elit anim laborum laborum consequat consequat eu quis ex aliquip aliquip. Commodo esse id cillum ea id proident sit non culpa proident mollit exercitation enim.",
+        "spans": []
+      }
+    ],
+    "author": [
+      {
+        "type": "paragraph",
+        "text": "Dolor aute mollit sint ullamco sint Lorem. Mollit amet ullamco proident exercitation excepteur dolor officia.",
+        "spans": []
+      }
+    ],
+    "banner": {
+      "dimensions": {
+        "width": 900,
+        "height": 500
+      },
+      "alt": null,
+      "copyright": null,
+      "url": "https://images.unsplash.com/photo-1541807084-5c52b6b3adef"
+    },
+    "content": [
+      {
+        "heading": [
+          {
+            "type": "paragraph",
+            "text": "Culpa elit velit laborum et magna esse aute voluptate non. Sint ex aliquip nostrud est Lorem qui qui consectetur. Ipsum sit aliqua qui elit non esse ut incididunt id cupidatat.",
+            "spans": []
+          }
+        ],
+        "body": [
+          {
+            "type": "paragraph",
+            "text": "Amet magna esse adipisicing enim sint minim ullamco.",
+            "spans": []
+          }
+        ]
+      }
+    ]
+  }
+}
