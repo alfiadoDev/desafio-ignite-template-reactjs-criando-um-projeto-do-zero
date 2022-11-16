@@ -1,10 +1,12 @@
+import { format } from 'date-fns';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import { ReactElement, useState } from 'react';
 import { FiCalendar, FiUser } from 'react-icons/fi';
+import ptBR from 'date-fns/locale/pt-BR';
 
-import { prismic } from '../services/prismic';
+import { getPrismicClient } from '../services/prismic';
 
 import commonStyles from '../styles/common.module.scss';
 import styles from './home.module.scss';
@@ -29,7 +31,20 @@ interface HomeProps {
 }
 
 export default function Home({ postsPagination }: HomeProps): ReactElement {
-  const [posts, setPosts] = useState<Post[]>(postsPagination.results);
+  const formatedPosts = postsPagination.results.map(post => {
+    return {
+      ...post,
+      first_publication_date: format(
+        new Date(post.first_publication_date),
+        'dd MMM yyyy',
+        {
+          locale: ptBR,
+        }
+      ),
+    };
+  });
+
+  const [posts, setPosts] = useState<Post[]>(formatedPosts);
   const [netxPage, setNextPage] = useState(postsPagination.next_page);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -47,17 +62,26 @@ export default function Home({ postsPagination }: HomeProps): ReactElement {
       return {
         uid: post.uid,
         data: {
-          title: post.data.title[0].text,
-          subtitle: post.data.subtitle[0].text,
-          author: post.data.author[0].text,
+          title:
+            typeof post.data.title !== 'string'
+              ? post.data.title[0].text
+              : post.data.title,
+          subtitle:
+            typeof post.data.title !== 'string'
+              ? post.data.subtitle[0].text
+              : post.data.subtitle,
+          author:
+            typeof post.data.title !== 'string'
+              ? post.data.author[0].text
+              : post.data.author,
         },
-        first_publication_date: new Date(
-          post.first_publication_date
-        ).toLocaleDateString('pt-BR', {
-          day: '2-digit',
-          month: 'short',
-          year: 'numeric',
-        }),
+        first_publication_date: format(
+          new Date(post.first_publication_date),
+          'dd MMM yyyy',
+          {
+            locale: ptBR,
+          }
+        ),
       };
     });
 
@@ -108,6 +132,7 @@ export default function Home({ postsPagination }: HomeProps): ReactElement {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
+  const prismic = getPrismicClient();
   const postsResponse = await prismic.getByType('posts', {
     fetch: [
       'posts.title',
@@ -127,17 +152,20 @@ export const getStaticProps: GetStaticProps = async () => {
     return {
       uid: post.uid,
       data: {
-        title: post.data.title[0].text,
-        subtitle: post.data.subtitle[0].text,
-        author: post.data.author[0].text,
+        title:
+          typeof post.data.title !== 'string'
+            ? post.data.title[0].text
+            : post.data.title,
+        subtitle:
+          typeof post.data.title !== 'string'
+            ? post.data.subtitle[0].text
+            : post.data.subtitle,
+        author:
+          typeof post.data.title !== 'string'
+            ? post.data.author[0].text
+            : post.data.author,
       },
-      first_publication_date: new Date(
-        post.first_publication_date
-      ).toLocaleDateString('pt-BR', {
-        day: '2-digit',
-        month: 'short',
-        year: 'numeric',
-      }),
+      first_publication_date: post.first_publication_date,
     };
   });
 
